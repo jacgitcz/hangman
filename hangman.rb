@@ -3,6 +3,7 @@ require "yaml"
 class Hangman
 
 	attr_accessor :guesses_left, :secret_len, :secret
+	EXTRA_GUESSES = 3
 
 	def initialize(dictionary)
 		dict = File.open(dictionary).readlines
@@ -13,7 +14,7 @@ class Hangman
 	def choose_secret
 		@secret = @goodwords[rand(@goodlength)].downcase.chomp
 		@secret_len = @secret.length
-		@guesses_left = @secret_len + 3
+		@guesses_left = @secret_len + EXTRA_GUESSES
 		@guess_so_far = "_"* @secret_len
 	end
 
